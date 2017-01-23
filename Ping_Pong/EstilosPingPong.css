@@ -1,0 +1,19 @@
+h1{
+    
+    color:blue;
+    font-weight:bold;
+    font-style:underline;
+    
+}
+
+canvas {
+    width: 1000;
+    height: 500;
+    border: 3px solid red;
+    border-collapse: collapse;
+    background-color: black
+    
+    
+    
+    
+}
