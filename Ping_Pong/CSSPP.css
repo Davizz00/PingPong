@@ -1,0 +1,16 @@
+h1{
+    
+    color:blue;
+    font-weight:bold;
+    font-style:underline;
+    
+}
+
+canvas{
+   
+    
+    border: 3px solid red;
+    border-collapse: collapse;
+    background-color: black
+    
+}
