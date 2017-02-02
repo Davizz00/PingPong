@@ -8,14 +8,14 @@ function jugador1(){
     var canvas = document.getElementById("myCanvas");
 	var pala1 = canvas.getContext("2d");
 	pala1.fillStyle = "green";
-	pala1.fillRect(100,250-(height/2),widht,height)
+	pala1.fillRect(100,250-(height/2),widht,height);
 	console.log("Hola");
     function evento(){
-        window.setInterval(move,1000);
-        //document.addEventListener("keypress", move);
+        //window.setInterval(move,1000);
+        document.addEventListener("keypress", move);
         function move(){
-            
-            pala1.fillrect = (100,250-(height/2)+100,widht,height);
+            var move = {};
+            move = pala1.fillRect(100,250-(height/2) + 30,widht,height);
             console.log("move");
             
         }
