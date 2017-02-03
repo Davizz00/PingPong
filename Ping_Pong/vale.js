@@ -12,10 +12,7 @@ pala1 = {
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "green";
         ctx.fillRect(this.x, this.y, this.w ,this.h);
-        if (document.addEventListener("keypress",move1)== true) {
-            move1();
-            
-        };
+        
         
     }
     
@@ -53,19 +50,26 @@ function dibujar(){
     pala1.dibujar();
     pala2.dibujar();
     bola.dibujar();
+    
    
     console.log("hola");
 }
 
     
-function move1(){
-    pala1.y += 5;
-    console.log("mover5");
+function move(){
+    window.setInterval(move1,1000)
+    move1{
+        pala1.y += 5;
+        pala1.dibujar();
+        console.log(pala1.y);
+    }
+    
 }
 
 
 function initcanvas(){
     dibujar();
+    window.setTimeOut(move,1000);
     
 	console.log("dfdffsf");
 }

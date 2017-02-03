@@ -9,6 +9,8 @@
             <h1>Ping Pong</h1>
             <br> 
 			<button onclick="initcanvas()">Iniciar </button>
+            
+            
 			
             <p><canvas id="myCanvas" width="1000" height="500"></canvas></p>
 			
