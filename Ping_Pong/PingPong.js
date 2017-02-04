@@ -11,25 +11,36 @@ var y1 = (hc-h)/2;
 var y2 = (hc-h)/2;
 var y3 = (hc-w)/2;
 
+function lienzo(){
+    var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "black";
+    ctx.fillRect(0,0, 1000, 500);
+    ctx.strike
+}
 
-function jugador1(){
+
+var jugador1 = function(){
     
     var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.fillStyle = "blue";
     ctx.fillRect(x1,y1,w,h);
-    move();
-    
+    console.log("jugador1")
+    console.log("y1: " + y1)
     
         
-}
+    }
+    
+
+
 function jugador2(){
     
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "orange";
     ctx.fillRect(x2,y2,w,h);
-	console.log("adios");
+	console.log("jugador2");
     
 }
 
@@ -38,29 +49,40 @@ function pelota(){
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "blue";
     ctx.fillRect(x3,y3,w,w);
-	console.log("tsss");
+	console.log("pelota");
     
 }   
 
+ function moveabajo(){
     
+    initcanvas();
     
-function move(){
     y1 += 10;
     
-    console.log(y1);
+ }   
     
-      
-}
-   
-
-function initcanvas(){
-    jugador1();
-    jugador2();
-    pelota();
-    window.setInterval(move,1000);
+function movearriba(){
+    
+    y1 -= 10;
+    initcanvas();
+    if (y1 == 0) {
+        y1 = 0;
+    }
     
     
  }
- 
+   
+
+function draw(){
+    jugador1();
+    jugador2();
+    pelota();
+}
+function initcanvas() {
+    lienzo();
+    draw();
+    
+}
+
  
    

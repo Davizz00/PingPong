@@ -3,13 +3,14 @@
     <head>
         <title>Ping Pong</title>
         <link rel="stylesheet" type="text/css" href="CSSPP.css">
-        <script type="text/javascript" src="PingPong.js"></script>
+        <script type="text/javascript" src= "PingPong.js"></script>
     </head>
         <body>
             <h1>Ping Pong</h1>
             <br> 
 			<button onclick="initcanvas()">Iniciar </button>
-            
+            <button onclick="movearriba()">moveariba </button>
+            <button onclick="moveabajo()">moveabajo </button>
             
 			
             <p><canvas id="myCanvas" width="1000" height="500"></canvas></p>
