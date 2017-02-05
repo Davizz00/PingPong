@@ -1,18 +1,18 @@
-const CW = 1000;
-const CH = 500;
-var w = 25;
-var h = 100;
-var x1 = 100;
-var x2 = 900;
-const PELOTAX = (CW-w) /2;
+const CW = 1000;    // canvas weight 
+const CH = 500; // canvas height
+var w = 25;     // acho de las palas y pelota, y altura de pelota
+var h = 100;    //altura de las palas
+var x1 = 100;    // posción  inicial x de la pala 1
+var x2 = 900;   // posición inicila x de la pala 2
+const PELOTAX = (CW-w) /2;//
 const POSICIONY = (CH-h)/2;
 const PELOTAY = (CH-w )/2;
 var y1 = POSICIONY;
 var y2 = POSICIONY;
 var y3 = PELOTAY;
 var x3 =PELOTAX;
-const SPEED = 0
-var velocidad = SPEED;
+var vx = 0;
+var vy = 0;
 
 
 
@@ -67,6 +67,11 @@ function pelota(){
     if ( y1 >= CH - h) {
         y1 = CH - h;
     }
+    
+    y2 += 10;
+    if ( y2 >= CH - h) {
+        y2 = CH - h;
+    }
     draw();
  }   
     
@@ -75,26 +80,42 @@ function movearriba(){
     if (y1 <= 0){
         y1 = 0;
     }
+    
+    y2 -= 10;
+    if (y2 <= 0){
+        y2 = 0;
+    }
     draw();
 }
    
 function timer(){
-    x3 += velocidad;
+    x3 += vx;
     if (x3 <= x2+w && y3<= y2+h && x2<= x3+w && y2<= y3+w){
-        velocidad = velocidad * -1
-        x3 += velocidad;
+        vx = vx * -1
+        x3 += vx;
     }
     if (x3 <= x1+w && y3 <= y1+h && y1<= y3+w){
-        velocidad = velocidad * -1;
-        x3 += velocidad;
+        vx = vx * -1;
+        x3 += vx;
         
+    }
+    
+    y3 += vy;
+    if (y3 >= CH-w){
+        vy = vy *-1;
+        y3 += vy;
+    }
+    
+    if (y3 <= 0){
+        vy= vy * -1;
+        y3 += vy;
     }
     if (x3 >= CW){
         initcanvas();
-}
+    }
     if(x3 <= 0){
         initcanvas();
-    } 
+    }     
     draw();
     
 }
@@ -109,11 +130,12 @@ function draw(){
 }
 function initcanvas() {
     y1 = POSICIONY;
-    Y2 = POSICIONY
+    y2 = POSICIONY;
     y3 = PELOTAY;
     x3 = PELOTAX;
     draw();
-    velocidad = -1;
+    vx =5;
+    vy = 0.5;
     
 }
 window.onload = function(){
