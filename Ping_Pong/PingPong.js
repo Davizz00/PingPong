@@ -13,6 +13,8 @@ var y3 = PELOTAY;
 var x3 =PELOTAX;
 var vx = 0;
 var vy = 0;
+var puntuacion1 = 0 // puntuacion jugador 1 
+var puntuacion2 = 0 // puntuacion jugador2 
 
 
 
@@ -22,7 +24,6 @@ function lienzo(){
 	var ctx = canvas.getContext("2d");
 	ctx.fillStyle = "black";
     ctx.fillRect(0,0, 1000, 500);
-    
 }
 
 
@@ -30,13 +31,11 @@ var jugador1 = function(){
     
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-	ctx.fillStyle = "blue";
+	ctx.fillStyle = "green";
     ctx.fillRect(x1,y1,w,h);
     console.log("jugador1")
     console.log("y1: " + y1 + " x1: " + x1);
-    
-        
-    }
+}
     
 
 
@@ -48,8 +47,6 @@ function jugador2(){
     ctx.fillRect(x2,y2,w,h);
 	console.log("jugador2");
     console.log("y2: " + y2 + " x2: " + x2);
-    
-    
 }
 
 function pelota(){
@@ -59,7 +56,6 @@ function pelota(){
     ctx.fillRect(x3,y3,w,w);
 	console.log("pelota");
     console.log("x3: " + x3, "y3 " + y3);
-    
 }   
 
  function moveabajo(){
@@ -93,12 +89,14 @@ function timer(){
     if (x3 <= x2+w && y3<= y2+h && x2<= x3+w && y2<= y3+w){
         vx = vx * -1
         x3 += vx;
-    }
-    if (x3 <= x1+w && y3 <= y1+h && y1<= y3+w){
+   }
+   
+   
+    if (x3 <= x1+w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){
         vx = vx * -1;
         x3 += vx;
-        
     }
+    
     
     y3 += vy;
     if (y3 >= CH-w){
@@ -111,13 +109,18 @@ function timer(){
         y3 += vy;
     }
     if (x3 >= CW){
+        puntuacion1 += 1;
+        var score1 = document.getElementById("score1");
+        score1.value = puntuacion1
         initcanvas();
     }
     if(x3 <= 0){
+        puntuacion2 += 1 
+        var score2 = document.getElementById("score2")
+        score2.value = puntuacion2;
         initcanvas();
     }     
     draw();
-    
 }
 function draw(){
     lienzo();

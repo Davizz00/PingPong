@@ -11,9 +11,18 @@
 			<button onclick="initcanvas()">Iniciar </button>
             <button onclick="movearriba()">moveariba </button>
             <button onclick="moveabajo()">moveabajo </button>
+            <label for "score1">Puntuacion1</label>
+            <input type="text" id="score1" value = "">
+            <label for "score2">Puntuacion2</label>
+            <input type="text" id="score2" value = "">
+            
             
 			
             <p><canvas id="myCanvas" width="1000" height="500"></canvas></p>
+            
+            
+            
+            
 			
 
         
