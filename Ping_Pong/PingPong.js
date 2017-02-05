@@ -15,6 +15,8 @@ const SPEED = 0
 var velocidad = SPEED;
 
 
+
+
 function lienzo(){
     var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
@@ -56,7 +58,7 @@ function pelota(){
     ctx.fillStyle = "blue";
     ctx.fillRect(x3,y3,w,w);
 	console.log("pelota");
-    console.log("x3: " + x3);
+    console.log("x3: " + x3, "y3 " + y3);
     
 }   
 
@@ -79,13 +81,14 @@ function movearriba(){
    
 function timer(){
     x3 += velocidad;
-    if(x3 >= (x2 - w)){
+    if(x3 <= x2+w && y3= < y2+h && x2<= x3+w && y2<= y3+w){
         velocidad = velocidad * -1
         x3 += velocidad;
     }
-    if (x3 <= (x1-w)){
+    if (x3 <= x1+w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){
         velocidad = velocidad * -1;
         x3 += velocidad;
+        
     }
     if (x3 >= CW){
         initcanvas();
