@@ -63,29 +63,28 @@ function pelota(){
 }   
 
  function moveabajo(){
-    
-    draw();
-    
     y1 += 10;
-    
+    if ( y1 >= CH - h) {
+        y1 = CH - h;
+    }
+    draw();
  }   
     
 function movearriba(){
-    
     y1 -= 10;
+    if (y1 <= 0){
+        y1 = 0;
+    }
     draw();
-    
-    
-    
- }
+}
    
 function timer(){
     x3 += velocidad;
-    if(x3 <= x2+w && y3= < y2+h && x2<= x3+w && y2<= y3+w){
+    if (x3 <= x2+w && y3<= y2+h && x2<= x3+w && y2<= y3+w){
         velocidad = velocidad * -1
         x3 += velocidad;
     }
-    if (x3 <= x1+w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){
+    if (x3 <= x1+w && y3 <= y1+h && y1<= y3+w){
         velocidad = velocidad * -1;
         x3 += velocidad;
         
