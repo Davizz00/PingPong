@@ -16,6 +16,8 @@ var vx = 0;
 var vy = 0;
 var puntuacion1 = 0 // puntuacion jugador 1 
 var puntuacion2 = 0 // puntuacion jugador2 
+const DIFERENCIA = y3 - y2; 
+ 
 
 
 
@@ -65,25 +67,25 @@ function pelota(){
 document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 87: // letra w la pala1 se desplaza hacia arriba
-            y1 -= 10;
+            y1 -= 20;
 			if (y1 <= 0){
 			y1 = 0;
 			}
             break;
         case 83: // letra s la pala1 se desplaza hacia abajo
-            y1 += 10;
+            y1 += 20;
 			if ( y1 >= CH - h) {
 			y1 = CH - h;
             }
             break;
         case 38: // flecha hacia arriba para que jugador2 se desplace hacia arrriba
-            y2 -= 10;
+            y2 -= 20;
 			if (y2 <= 0){
 			y2 = 0;
 			} 
             break;
         case 40: // flecha hacia abajo para que jugador2 se desplace hacia abajo
-            y2 += 10;
+            y2 += 20;
 			if ( y2 >= CH - h) {
 			y2 = CH - h;
 			}
@@ -97,11 +99,18 @@ function timer(){
 	velocidad();
     x3 += vx;
 	y3 += vy;
+    
 	
     if (x3 <= x2+w && y3<= y2+h && x2<= x3+w3 && y2<= y3+w3){ //if para colosion pelota con jugador2
 		//vx +=0.1;
 		vx = vx * -1;
 		x3 += vx;
+        
+        var diferencia_pala2 = y3-y2 - DIFERENCIA;
+        vy += diferencia_pala2/12;
+        console.log("posicion y2 " + y2);
+        console.log("posicio_y3" + y3)
+        
 		
    }
    
@@ -109,6 +118,8 @@ function timer(){
     if (x3 <= x1 + w3 + w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){ //if para colosion pelota con jugador1 
 		vx = vx * -1;
 		//vx += 0.1;
+        var diferencia_pala1 = y3-y1 -DIFERENCIA
+        vy += diferencia_pala1/12 
         x3 += vx;
     }
     
@@ -156,8 +167,12 @@ function initcanvas() {
     y3 = PELOTAY;
     x3 = PELOTAX;
     draw();
-    vx =3;
-	vy = 0;
+    vx = 3;
+    if ((Math.random() -0.5) <=0){
+        vx = vx *-1;
+    } 
+    
+	vy = (Math.random() -0.5) * 3 ;
     
 	
 	
