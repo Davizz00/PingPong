@@ -1,12 +1,13 @@
 const CW = 1000;    // canvas weight 
 const CH = 500; // canvas height
-var w = 25;     // acho de las palas y pelota, y altura de pelota
+var w = 25;
+var w3 = 12.5     // acho de las palas y pelota, y altura de pelota
 var h = 100;    //altura de las palas
 var x1 = 100;    // posción  inicial x de la pala 1
 var x2 = 900;   // posición inicila x de la pala 2
-const PELOTAX = (CW-w) /2;//
+const PELOTAX = (CW-w3) /2;//
 const POSICIONY = (CH-h)/2;
-const PELOTAY = (CH-w )/2;
+const PELOTAY = (CH-w3 )/2;
 var y1 = POSICIONY;
 var y2 = POSICIONY;
 var y3 = PELOTAY;
@@ -52,59 +53,71 @@ function jugador2(){
 function pelota(){
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "blue";
-    ctx.fillRect(x3,y3,w,w);
+    ctx.beginPath();
+	ctx.arc(x3,y3,w3,0,2*Math.PI);
+	ctx.fillStyle = "white";
+	ctx.stroke();
+	ctx.fill();
+	
 	console.log("pelota");
     console.log("x3: " + x3, "y3 " + y3);
 }   
-
- function moveabajo(){
-    y1 += 10;
-    if ( y1 >= CH - h) {
-        y1 = CH - h;
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 87: // letra w la pala1 se desplaza hacia arriba
+            y1 -= 10;
+			if (y1 <= 0){
+			y1 = 0;
+			}
+            break;
+        case 83: // letra s la pala1 se desplaza hacia abajo
+            y1 += 10;
+			if ( y1 >= CH - h) {
+			y1 = CH - h;
+            }
+            break;
+        case 38: // flecha hacia arriba para que jugador2 se desplace hacia arrriba
+            y2 -= 10;
+			if (y2 <= 0){
+			y2 = 0;
+			} 
+            break;
+        case 40: // flecha hacia abajo para que jugador2 se desplace hacia abajo
+            y2 += 10;
+			if ( y2 >= CH - h) {
+			y2 = CH - h;
+			}
+            break;
     }
-    
-    y2 += 10;
-    if ( y2 >= CH - h) {
-        y2 = CH - h;
-    }
-    draw();
- }   
-    
-function movearriba(){
-    y1 -= 10;
-    if (y1 <= 0){
-        y1 = 0;
-    }
-    
-    y2 -= 10;
-    if (y2 <= 0){
-        y2 = 0;
-    }
-    draw();
-}
+	draw();
+};
+ 
    
 function timer(){
+	velocidad();
     x3 += vx;
-    if (x3 <= x2+w && y3<= y2+h && x2<= x3+w && y2<= y3+w){
-        vx = vx * -1
-        x3 += vx;
+	y3 += vy;
+	
+    if (x3 <= x2+w && y3<= y2+h && x2<= x3+w3 && y2<= y3+w3){ //if para colosion pelota con jugador2
+		//vx +=0.1;
+		vx = vx * -1;
+		x3 += vx;
+		
    }
    
    
-    if (x3 <= x1+w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){
-        vx = vx * -1;
+    if (x3 <= x1 + w3 + w && y3 <= y1+h && x1<= x3+w && y1<= y3+w){ //if para colosion pelota con jugador1 
+		vx = vx * -1;
+		//vx += 0.1;
         x3 += vx;
     }
     
-    
-    y3 += vy;
-    if (y3 >= CH-w){
+    if (y3 >= CH-w3){ // colision pelota con parte inferior del canvas
         vy = vy *-1;
         y3 += vy;
     }
     
-    if (y3 <= 0){
+    if (y3 <= w3){ // colision pelota con la parte superior del canvas
         vy= vy * -1;
         y3 += vy;
     }
@@ -122,6 +135,12 @@ function timer(){
     }     
     draw();
 }
+function velocidad(){
+	if (y3<= y1+50 && y1<y3+w && x3 <= x1 + w3 + w && x1<= x3+w){
+		vy = 1;
+		console.log("EFRERetreggdfgfg");
+	}
+}
 function draw(){
     lienzo();
     jugador1();
@@ -137,8 +156,11 @@ function initcanvas() {
     y3 = PELOTAY;
     x3 = PELOTAX;
     draw();
-    vx =5;
-    vy = 0.5;
+    vx =3;
+	vy = 0;
+    
+	
+	
     
 }
 window.onload = function(){
